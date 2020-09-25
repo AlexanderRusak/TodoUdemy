@@ -12,7 +12,7 @@ export const Todo = ({ todo, onRemove, onOpen }) => {
       }}
     >
       <View style={styles.todo}>
-        <Text>{todo.title}</Text>
+        <Text style={styles.title}>{todo.title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -28,4 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginBottom: 10,
   },
+  title:{
+    fontFamily:'roboto-regular',
+  }
 });

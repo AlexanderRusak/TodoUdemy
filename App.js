@@ -1,16 +1,35 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+
 import { MainScreen } from "./src/screens/MainScreen";
 import { Navbar } from "./src/components/Navbar";
 import { TodoScreen } from "./src/screens/TodoScreen";
 
+async function loadApplication() {
+  await Font.loadAsync({
+    'roboto-regular': require("./assets/fonts/Roboto-Regular.ttf"),
+    'roboto-bold': require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+}
+
 export default function App() {
-  const [todoId, setTodoId] = useState("1");
-  const [todos, setTodos] = useState([
-    { id: "1", title: "Learn React Native" },
-    { id: "2", title: "Write app" },
-  ]);
+  const [isReady, setIsReady] = useState(false);
+  const [todoId, setTodoId] = useState(null);
+  const [todos, setTodos] = useState([]);
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onFinish={() => {
+          setIsReady(true);
+        }}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
 
   const addTodo = (title) => {
     const newTodo = {
@@ -21,7 +40,16 @@ export default function App() {
       return [...prevTodos, newTodo];
     });
   };
-
+  const updateTodo = (id, title) => {
+    setTodos((old) =>
+      old.map((todo) => {
+        if (todo.id === id) {
+          todo.title = title;
+        }
+        return todo;
+      })
+    );
+  };
   const removeTodo = (id) => {
     const todo = todos.find((t) => t.id === id);
     Alert.alert(
@@ -59,6 +87,7 @@ export default function App() {
         onRemove={removeTodo}
         todo={selecteTodo}
         goBack={() => setTodoId(null)}
+        onSave={updateTodo}
       />
     );
   }
