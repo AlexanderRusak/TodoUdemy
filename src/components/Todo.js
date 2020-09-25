@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 
+import { AppText } from "./UI/AppText";
 export const Todo = ({ todo, onRemove, onOpen }) => {
   return (
     <TouchableOpacity
@@ -12,7 +13,7 @@ export const Todo = ({ todo, onRemove, onOpen }) => {
       }}
     >
       <View style={styles.todo}>
-        <Text style={styles.title}>{todo.title}</Text>
+        <AppText>{todo.title}</AppText>
       </View>
     </TouchableOpacity>
   );
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginBottom: 10,
   },
-  title:{
-    fontFamily:'roboto-regular',
-  }
+  title: {
+    fontFamily: "roboto-bold",
+  },
 });

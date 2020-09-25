@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { THEME } from "../theme";
+import {AntDesign} from "@expo/vector-icons";
 
 export const AddTodo = ({ addSubmit }) => {
   const [title, setTitle] = useState("");
@@ -25,7 +26,8 @@ export const AddTodo = ({ addSubmit }) => {
         keyboardType="email-address"
         autoCorrect={false}
       />
-      <Button onPress={pressHandler} title="ADD" />
+
+      <AntDesign.Button onPress={pressHandler} name="pluscircleo">ADD</AntDesign.Button>
     </View>
   );
 };

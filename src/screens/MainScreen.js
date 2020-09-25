@@ -20,13 +20,7 @@ export const MainScreen = ({ removeTodo, todos, addTodo, openTodo }) => {
           source={require("../../assets/noItems.png")}
           style={styles.image}
         />
-  {/*       <Image
-          source={{
-            uri:
-              "https://www.manhattanmobile.com/wp-content/uploads/2018/08/react-native-workshop-1024x538.jpg",
-          }}
-          style={styles.image}
-        /> */}
+
       </View>
     );
   }
